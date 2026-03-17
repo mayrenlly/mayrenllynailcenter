@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Nail Center</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#ff9ad5,#ffc3e9);
+}
+
+/* NAV */
+
+nav{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 10%;
+background:white;
+box-shadow:0 5px 20px rgba(0,0,0,0.1);
+}
+
+.logo{
+font-size:1.5rem;
+font-weight:600;
+color:#bb377d;
+}
+
+nav ul{
+display:flex;
+list-style:none;
+gap:30px;
+}
+
+nav a{
+text-decoration:none;
+color:#333;
+font-weight:500;
+}
+
+/* HERO */
+
+.hero{
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+height:50vh;
+background:linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.5)),
+url("Imagen de WhatsApp 2026-01-13 a las 00.55.08_871d41f0.jpg");
+background-size:cover;
+color:white;
+}
+
+.hero h1{
+font-size:3rem;
+margin-bottom:10px;
+}
+
+.boton{
+background:#bb377d;
+color:white;
+padding:12px 25px;
+border-radius:30px;
+text-decoration:none;
+}
+
+/* SECCION */
+
+.section{
+padding:60px 10%;
+text-align:center;
+}
+
+.section h2{
+color:#bb377d;
+margin-bottom:40px;
+}
+
+/* SERVICIOS */
+
+.servicios{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:20px;
+}
+
+.card{
+background:white;
+padding:25px;
+border-radius:15px;
+box-shadow:0 10px 20px rgba(0,0,0,0.15);
+}
+
+/* GALERIA */
+
+.galeria{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:15px;
+}
+
+.galeria img{
+width:100%;
+height:220px;
+object-fit:cover;
+border-radius:15px;
+}
+
+/* FORMULARIO */
+
+.formulario{
+max-width:500px;
+margin:auto;
+background:white;
+padding:30px;
+border-radius:15px;
+box-shadow:0 10px 20px rgba(0,0,0,0.2);
+}
+
+form{
+display:grid;
+gap:12px;
+}
+
+input,select{
+padding:12px;
+border-radius:10px;
+border:1px solid #ccc;
+}
+
+button{
+background:#bb377d;
+color:white;
+border:none;
+padding:12px;
+border-radius:25px;
+cursor:pointer;
+}
+
+button:hover{
+background:#8a1f57;
+}
+
+/* HORAS OCUPADAS */
+
+.ocupada{
+background:#ff4d4d;
+color:white;
+}
+
+/* WHATSAPP */
+
+.whatsapp{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#25D366;
+color:white;
+font-size:26px;
+padding:15px;
+border-radius:50%;
+text-decoration:none;
+}
+
+</style>
+</head>
+
+<body>
+
+<nav>
+
+<div class="logo">Nail Center</div>
+
+<ul>
+<li><a href="#servicios">Servicios</a></li>
+<li><a href="#galeria">Galería</a></li>
+<li><a href="#citas">Citas</a></li>
+</ul>
+
+</nav>
+
+<section class="hero">
+
+<div>
+<h1>Arte en tus uñas</h1>
+<a href="#citas" class="boton">Reservar cita</a>
+</div>
+
+</section>
+
+
+<section class="section" id="servicios">
+
+<h2>Servicios</h2>
+
+<div class="servicios">
+
+<div class="card">
+<h3>Uñas Acrílicas</h3>
+<p>Duraderas y elegantes.</p>
+</div>
+
+<div class="card">
+<h3>Uñas en Gel</h3>
+<p>Brillo natural.</p>
+</div>
+
+<div class="card">
+<h3>Semipermanente</h3>
+<p>Look moderno.</p>
+</div>
+
+<div class="card">
+<h3>Diseños</h3>
+<p>Arte personalizado.</p>
+</div>
+
+</div>
+
+</section>
+
+
+<section class="section" id="galeria">
+
+<h2>Galería</h2>
+
+<div class="galeria">
+
+<img src="WhatsApp Image 2026-03-16 at 5.14.40 PM (1).jpeg">
+<img src="WhatsApp Image 2026-03-16 at 5.14.40 PM (2).jpeg">
+<img src="WhatsApp Image 2026-03-16 at 5.14.40 PM (3).jpeg">
+<img src="WhatsApp Image 2026-03-16 at 5.14.40 PM.jpeg">
+
+</div>
+
+</section>
+
+
+<section class="section" id="citas">
+
+<h2>Agenda tu cita</h2>
+
+<div class="formulario">
+
+<form onsubmit="enviarWhatsApp();return false;">
+
+<input type="text" id="nombre" placeholder="Nombre" required>
+
+<input type="tel" id="telefono" placeholder="Teléfono" required>
+
+<select id="servicio" required>
+<option value="">Servicio</option>
+<option>Uñas Acrílicas</option>
+<option>Uñas en Gel</option>
+<option>Semipermanente</option>
+<option>Diseño</option>
+</select>
+
+<input type="date" id="fecha" required>
+
+<select id="hora" required>
+<option value="">Selecciona hora</option>
+<option value="09:00">09:00</option>
+<option value="10:00">10:00</option>
+<option value="11:00">11:00</option>
+<option value="12:00">12:00</option>
+<option value="13:00">13:00</option>
+<option value="14:00">14:00</option>
+<option value="15:00">15:00</option>
+<option value="16:00">16:00</option>
+</select>
+
+<button type="submit">Agendar por WhatsApp</button>
+
+</form>
+
+</div>
+
+</section>
+
+
+<a class="whatsapp" href="https://wa.me/18493439866" target="_blank">💬</a>
+
+
+<script>
+
+let citas = JSON.parse(localStorage.getItem("citas")) || [];
+
+function actualizarHoras(){
+
+let fecha=document.getElementById("fecha").value;
+let opciones=document.querySelectorAll("#hora option");
+
+opciones.forEach(op=>{
+
+if(op.value==="") return;
+
+let ocupada=citas.find(c=>c.fecha===fecha && c.hora===op.value);
+
+if(ocupada){
+
+op.disabled=true;
+op.classList.add("ocupada");
+
+}else{
+
+op.disabled=false;
+op.classList.remove("ocupada");
+
+}
+
+});
+
+}
+
+document.getElementById("fecha").addEventListener("change",actualizarHoras);
+
+function enviarWhatsApp(){
+
+let nombre=document.getElementById("nombre").value;
+let telefono=document.getElementById("telefono").value;
+let servicio=document.getElementById("servicio").value;
+let fecha=document.getElementById("fecha").value;
+let hora=document.getElementById("hora").value;
+
+let cita={
+nombre,
+telefono,
+servicio,
+fecha,
+hora
+};
+
+citas.push(cita);
+
+localStorage.setItem("citas",JSON.stringify(citas));
+
+actualizarHoras();
+
+let mensaje=`Hola quiero agendar una cita
+
+Nombre: ${nombre}
+Telefono: ${telefono}
+Servicio: ${servicio}
+Fecha: ${fecha}
+Hora: ${hora}`;
+
+let url=`https://wa.me/18493439866?text=${encodeURIComponent(mensaje)}`;
+
+window.open(url,"_blank");
+
+}
+
+</script>
+
+</body>
+</html>
