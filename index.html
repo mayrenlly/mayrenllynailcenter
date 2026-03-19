@@ -269,48 +269,23 @@ text-decoration:none;
 <option>Diseño</option>
 </select>
 
-<select id="hora">
-  <option value="">Selecciona una hora</option>
-  <option value="6:00">6:00 PM</option>
-  <option value="7:00">7:00 PM</option>
-  <option value="8:00">8:00 PM</option>
-  option value="09:00">09:00</option>
-<option value="10:00">10:00</option>
-<option value="11:00">11:00</option>
-<option value="12:00">12:00</option>
-<option value="13:00">13:00</option>
-<option value="14:00">14:00</option>
-<option value="15:00">15:00</option>
-<option value="16:00">16:00</option>
+<input type="date" id="fecha" required>
+
+<select id="hora" required>
+<option value="">Selecciona una hora</option>
+<option value="18:00">6:00 PM</option>
+<option value="19:00">7:00 PM</option>
+<option value="20:00">8:00 PM</option>
+<option value="09:00">09:00 AM</option>
+<option value="10:00">10:00 AM</option>
+<option value="11:00">11:00 AM</option>
+<option value="12:00">12:00 PM</option>
+<option value="13:00">01:00 PM</option>
+<option value="14:00">02:00 PM</option>
+<option value="15:00">03:00 PM</option>
+<option value="16:00">04:00 PM</option>
 </select>
 
-<script>
-// Cargar horas ocupadas
-let horasOcupadas = JSON.parse(localStorage.getItem("horas")) || [];
-
-let select = document.getElementById("hora");
-
-// Marcar horas ocupadas al cargar
-function actualizarHoras() {
-  for (let option of select.options) {
-    if (horasOcupadas.includes(option.value)) {
-      option.disabled = true;
-      option.style.color = "red";
-    }
-  }
-}
-
-// Guardar nueva hora
-select.addEventListener("change", function() {
-  let horaSeleccionada = select.value;
-
-  if (!horasOcupadas.includes(horaSeleccionada)) {
-    horasOcupadas.push(horaSeleccionada);
-    localStorage.setItem("horas", JSON.stringify(horasOcupadas));
-  }
-
-  window.onload = actualizarHoras;
-});
 <button type="submit">Agendar por WhatsApp</button>
 
 </form>
@@ -354,8 +329,10 @@ op.classList.remove("ocupada");
 
 }
 
+// Detectar cambio de fecha
 document.getElementById("fecha").addEventListener("change",actualizarHoras);
 
+// Guardar y enviar
 function enviarWhatsApp(){
 
 let nombre=document.getElementById("nombre").value;
@@ -363,6 +340,20 @@ let telefono=document.getElementById("telefono").value;
 let servicio=document.getElementById("servicio").value;
 let fecha=document.getElementById("fecha").value;
 let hora=document.getElementById("hora").value;
+
+// Validar
+if(!fecha || !hora){
+alert("Selecciona fecha y hora");
+return;
+}
+
+// Verificar si ya está ocupada
+let existe=citas.find(c=>c.fecha===fecha && c.hora===hora);
+
+if(existe){
+alert("Esa hora ya está ocupada");
+return;
+}
 
 let cita={
 nombre,
