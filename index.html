@@ -269,11 +269,12 @@ text-decoration:none;
 <option>Diseño</option>
 </select>
 
-<input type="date" id="fecha" required>
-
-<select id="hora" required>
-<option value="">Selecciona hora</option>
-<option value="09:00">09:00</option>
+<select id="hora">
+  <option value="">Selecciona una hora</option>
+  <option value="6:00">6:00 PM</option>
+  <option value="7:00">7:00 PM</option>
+  <option value="8:00">8:00 PM</option>
+  option value="09:00">09:00</option>
 <option value="10:00">10:00</option>
 <option value="11:00">11:00</option>
 <option value="12:00">12:00</option>
@@ -283,6 +284,33 @@ text-decoration:none;
 <option value="16:00">16:00</option>
 </select>
 
+<script>
+// Cargar horas ocupadas
+let horasOcupadas = JSON.parse(localStorage.getItem("horas")) || [];
+
+let select = document.getElementById("hora");
+
+// Marcar horas ocupadas al cargar
+function actualizarHoras() {
+  for (let option of select.options) {
+    if (horasOcupadas.includes(option.value)) {
+      option.disabled = true;
+      option.style.color = "red";
+    }
+  }
+}
+
+// Guardar nueva hora
+select.addEventListener("change", function() {
+  let horaSeleccionada = select.value;
+
+  if (!horasOcupadas.includes(horaSeleccionada)) {
+    horasOcupadas.push(horaSeleccionada);
+    localStorage.setItem("horas", JSON.stringify(horasOcupadas));
+  }
+
+  window.onload = actualizarHoras;
+});
 <button type="submit">Agendar por WhatsApp</button>
 
 </form>
